@@ -3,7 +3,7 @@
   "sap.app": {
     "id": "alfa02.alfa02",
     "type": "application",
-    "i18n": "i18n/i18n.properties",
+    "i18n": "i18n/i18n.properties", 
     "applicationVersion": {
       "version": "0.0.1"
     },
@@ -107,25 +107,33 @@
       },
       "routes": [
         {
-          "name": "RouteMainView",
-          "pattern": ":?query:",
+          "name": "RouteMain",
+          "pattern": "RouteMain",
           "target": [
-            "TargetMainView"
+            "TargetMain"
           ]
         }
       ],
       "targets": {
-        "TargetMainView": {
+        "TargetMain": {
           "viewType": "XML",
           "transition": "slide",
           "clearControlAggregation": false,
-          "viewId": "MainView",
-          "viewName": "MainView"
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "TargetMasterEmployee": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
         }
+
       }
     },
     "rootView": {
-      "viewName": "alfa02.alfa02.view.App",
+      "viewName": "alfa02.alfa02.view.Main",
       "type": "XML",
       "async": true,
       "id": "App"

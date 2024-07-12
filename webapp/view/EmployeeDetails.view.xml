@@ -1,0 +1,61 @@
+<mvc:View xmlns:layout="sap.ui.layout" xmlns:table="sap.ui.table" 
+    controllerName="alfa02.alfa02.controller.EmployeeDetails"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page id="pag1" title="{i18n>employeeDetails}">
+        <Panel id="PL1">
+            <FlexBox id="FB1" height="65px" alignItems="Center" justifyContent="Center">
+                <items>
+                    <Text id="txt1" text="{jsonEmployees>LastName}, {jsonEmployees>FisrtName}" class="boldText"/>
+                </items>
+            </FlexBox>
+            <FlexBox id="FB2" height="65px" alignItems="Start" justifyContent="SpaceBetween"> 
+                <items>
+                    <VBox id="VB1">
+                        <Text id="txt2" text="{i18n>employeeID}" class="boldText sapUiTinyMarginEnd"/>
+                        <Text id="txt3" text="{jsonEmployees>EmployeeID}"/>
+                    </VBox>
+                    <VBox id="VB3">
+                        <Text id="txt4" text="{i18n>titleEmployee}" class="boldText"/>
+                        <Text id="txt5" text="{jsonEmployees>Title}"/>
+                    </VBox>
+                </items>
+            </FlexBox>
+            <FlexBox id="FB3" alignItems="Start">
+                <items>
+                    <HBox id="HB1">
+                        <Text id="txt6" text="{i18n>countryCode}" class="boldText sapUiTinyMarginEnd"/>
+                        <Text id="txt7" text="{jsonEmployees>Country}"/>
+                        <layoutData>
+                            <FlexItemData id="FID1" growFactor="3"></FlexItemData>
+                        </layoutData>
+                    </HBox>
+                    <HBox id="HB2">
+                        <Text id="txt8" text="{i18n>city}" class="boldText sapUiTinyMarginEnd"/>
+                        <Text id="txt9" text="{jsonEmployees>City}"/>
+                        <layoutData>
+                            <FlexItemData id="FID2" growFactor="3"></FlexItemData>
+                        </layoutData>
+                    </HBox>
+                    <FlexBox id="FB4" direction="Row" alignItems="Start">
+                        <Text id="txt10" text="{i18n>postalCode}" class="boldText sapUiTinyMarginEnd"/>
+                        <Text id="txt11" text="{jsonEmployees>PostalCode}"/>
+                    </FlexBox>
+                </items>
+            </FlexBox>
+        </Panel>
+        <Panel id="PL2" class="sapUiSizeCompact" backgroundDesign="Transparent">
+            <headerToolbar>
+                <Toolbar id="TB1">
+                    <Title id="ttl1" text="{i18n>incidence} {= ${jsonEmployees>Country} !=='US' ? ${i18n>europe} : ${i18n>us}}"></Title>
+                    <ToolbarSpacer id="tbs"></ToolbarSpacer>
+                    <Button id="bt" text="{i18n>createIncidence}" press="onCreateIncidence"></Button>
+                </Toolbar>
+            </headerToolbar>
+            <Panel id="tableIncidence" class="sapUiNoContentPadding" backgroundDesign="Transparent"></Panel>
+        </Panel>
+    </Page>
+</mvc:View>  
