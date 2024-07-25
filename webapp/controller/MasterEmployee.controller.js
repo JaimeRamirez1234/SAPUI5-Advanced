@@ -70,7 +70,7 @@ function (Controller, Filter, FilterOperator) {
         var iconPressed = oEvent.getSource();
 
         //Context from the model
-        var oContext = iconPressed.getBindingContext("jsonEmployees");
+        var oContext = iconPressed.getBindingContext("odataNorthwind");
 
         if(!this._oDialogOrders){
             this._oDialogOrders = sap.ui.xmlfragment("alfa02.alfa02.fragment.DialogOrders", this);
@@ -79,7 +79,7 @@ function (Controller, Filter, FilterOperator) {
 
         //Dialog Binding to teh context to have access to the data of selected item
 
-        this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+        this._oDialogOrders.bindElement("odataNorthwind>" + oContext.getPath());
         this._oDialogOrders.open();
 
     };
@@ -89,7 +89,7 @@ function (Controller, Filter, FilterOperator) {
     };
 
     function showEmployee(oEvent){ 
-        var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+        var path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
         this._bus.publish("flexible", "showEmployee", path);
     };
 

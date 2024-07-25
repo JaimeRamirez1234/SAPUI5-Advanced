@@ -2,7 +2,7 @@
         <Panel id="P1">                                          
             <Button id="btnShowCity" text="{i18n>ShowCity}" visible="{jsonModelConfig>/visibleBtnShowCity}" press="onShowCity"/>
             <Button id="btnHideCity" text="{i18n>HideCity}" visible="{jsonModelConfig>/visibleBtnHideCity}" press="onHideCity"/>
-                        <Table id="tableEmployee" items="{jsonEmployees>/Employees}">
+                        <Table id="tableEmployee" items="{odataNorthwind>/Employees}">
                                     <columns>
                                         <Column id="col1" visible="{jsonModelConfig>/visibleID}">
                                             <header>
@@ -42,10 +42,10 @@
                                     <items>
                                         <ColumnListItem id="it1" type="Navigation" press="showEmployee">
                                             <cells>
-                                                <Label id="lb1" text="{jsonEmployees>EmployeeID}"></Label>
-                                                <Label id="lb2" text="{jsonEmployees>LastName}, {jsonEmployees>FisrtName}"></Label>
-                                                <Label id="lb3" text="{jsonEmployees>Country}"></Label>
-                                                <Label id="lb4" text="{jsonEmployees>City}"></Label>
+                                                <Label id="lb1" text="{odataNorthwind>EmployeeID}"></Label>
+                                                <Label id="lb2" text="{odataNorthwind>LastName}, {odataNorthwind>FisrtName}"></Label>
+                                                <Label id="lb3" text="{odataNorthwind>Country}"></Label>
+                                                <Label id="lb4" text="{odataNorthwind>City}"></Label>
                                                 <core:Icon id="ico" src="sap-icon://show" press="showOrders"></core:Icon>
                                             </cells>
                                         </ColumnListItem>

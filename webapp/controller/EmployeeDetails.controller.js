@@ -7,7 +7,7 @@ function(Controller, formatter) {
     "use strict";
     
     function onInit(){
-
+            this._bus = sap.ui.getCore().getEventBus();
         };
     function onCreateIncidence(){
         var tableIncidence = this.getView().byId("tableIncidence");
@@ -44,12 +44,20 @@ function(Controller, formatter) {
 
     };
 
+    function onSaveIncidence(oEvent) {
+        var incidence = oEvent.getSource().getParent().getParent();
+        var incidenceRow = incidence.getBindingContext("incidenceModel");
+        //var temp = incidenceRow.sPath.replace('/','');
+        this._bus.publish("incidence", "onSaveIncidence", { incidenceRow : incidenceRow.sPath.replace('/', '') } );
+    };
+
     var EmployeeDetails = Controller.extend("alfa02.alfa02.controller.EmployeeDetails", {});
 
     EmployeeDetails.prototype.onInit = onInit;
     EmployeeDetails.prototype.onCreateIncidence = onCreateIncidence;
     EmployeeDetails.prototype.onDeleteIncidence = onDeleteIncidence;
     EmployeeDetails.prototype.Formatter = formatter;
+    EmployeeDetails.prototype.onSaveIncidence = onSaveIncidence;
     return EmployeeDetails;
 
 });

@@ -2,11 +2,12 @@
     <Panel >
         <headerToolbar>
             <Toolbar >
-                <core:Icon src="{= ${incidenceModel>status}==='0' ? 'accept' :
-                                    ${incidenceModel>status}==='1' ? 'alert'  :
-                                    ${incidenceModel>status}==='2' ? 'decline'  : ''}"></core:Icon>
-                <Title text="{i18n>incidence} {incidenceModel>index} {path : 'incidenceModel>date', formatter:'.Formatter.dateFormat'}"></Title>
+                <core:Icon src="{= ${incidenceModel>Type}==='0' ? 'sap-icon://accept' :
+                                    ${incidenceModel>Type}==='1' ? 'sap-icon://alert'  :
+                                    ${incidenceModel>Type}==='2' ? 'sap-icon://decline'  : ''}"></core:Icon>
+                <Title text="{i18n>incidence} {incidenceModel>IncidenceId} {path : 'incidenceModel>CreationDate', formatter:'.Formatter.dateFormat'}"></Title>
                 <ToolbarSpacer />
+                <Button icon="sap-icon://save" press="onSaveIncidence"/>
                 <core:Icon src="delete" press="onDeleteIncidence"/>
             </Toolbar>
         </headerToolbar>
@@ -14,15 +15,15 @@
             <HBox >
                 <VBox class="sapUiSmallMarginEnd">
                     <Text text="{i18n>incidenceDate}"/>
-                    <DatePicker dateValue="{incidenceModel>date}"/>
+                    <DatePicker dateValue="{incidenceModel>CreationDate}"/>
                 </VBox>
-                <VBox visible="{= ${incidenceModel>date} !== '' &amp;&amp; ${incidenceModel>date} !== undefinded}" class="sapUiSmallMarginEnd">
+                <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefined}" class="sapUiSmallMarginEnd">
                     <Text text="{i18n>incidenceReason}"></Text>
-                    <Input ></Input>
+                    <Input value="{incidenceModel>Reason}"></Input>
                 </VBox>
-                <VBox visible="{= ${incidenceModel>date} !== '' &amp;&amp; ${incidenceModel>date} !== undefinded}">
+                <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefinded}">
                     <Text text="{i18n>incidenceType}"></Text>
-                    <Select selectedKey="{incidenceModel>status}" forceSelection="false">
+                    <Select selectedKey="{incidenceModel>Type}" forceSelection="false">
                         <core:Item key="0" text="{i18n>incidenceCorrect}"/>
                         <core:Item key="1" text="{i18n>incidencePending}"/>
                         <core:Item key="2" text="{i18n>incidenceError}"/>
