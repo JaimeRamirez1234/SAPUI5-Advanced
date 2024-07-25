@@ -1,7 +1,8 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageBox"
 ], 
-function(Controller) {
+function(Controller, MessageBox) {
     'use strict';
     return Controller.extend("alfa02.alfa02.controller.Main",{
 
@@ -93,7 +94,8 @@ function(Controller) {
             this.getView().getModel("incidenceModel").create("/IncidentsSet", body,{
                 success: function (){   
                     this.onReadODataIncidence.bind(this)(employeeId);
-                    sap.m.MessageToast.show(oResourceBundle.getText("odataSaveOK"));
+                    MessageBox.success(oResourceBundle.getText("odataSaveOK"));
+                    //sap.m.MessageToast.show(oResourceBundle.getText("odataSaveOK"));
                 }.bind(this),
                 error: function(e){
                     sap.m.MessageToast.show(oResourceBundle.getText("odataSaveKO"));
@@ -142,6 +144,11 @@ function(Controller) {
                     tableIncidence.removeAllContent();
 
                     for (var incidence in data.results){
+
+                        data.results[incidence]._ValidateDate = true;
+
+                        data.results[incidence].EnabledSave = false;
+
                         var newIncidence = sap.ui.xmlfragment("alfa02.alfa02.fragment.NewIncidence", this._detailEmployeeView.getController());
                         this._detailEmployeeView.addDependent(newIncidence);
                         newIncidence.bindElement("incidenceModel>/" + incidence);
