@@ -5,7 +5,8 @@
                 <core:Icon src="{= ${incidenceModel>Type}==='0' ? 'sap-icon://accept' :
                                     ${incidenceModel>Type}==='1' ? 'sap-icon://alert'  :
                                     ${incidenceModel>Type}==='2' ? 'sap-icon://decline'  : ''}"></core:Icon>
-                <Title text="{i18n>incidence} {incidenceModel>IncidenceId} {path : 'incidenceModel>CreationDate', formatter:'.Formatter.dateFormat'}"></Title>
+                <Title text="{i18n>incidence} {= ${incidenceModel>IncidenceId} ? parseInt(${incidenceModel>IncidenceId}): ''}
+                             {path : 'incidenceModel>CreationDate', formatter:'.Formatter.dateFormat'}"></Title>
                 <ToolbarSpacer />
                 <Button icon="sap-icon://save" press="onSaveIncidence"/>
                 <core:Icon src="delete" press="onDeleteIncidence"/>
@@ -15,15 +16,15 @@
             <HBox >
                 <VBox class="sapUiSmallMarginEnd">
                     <Text text="{i18n>incidenceDate}"/>
-                    <DatePicker dateValue="{incidenceModel>CreationDate}"/>
+                    <DatePicker dateValue="{incidenceModel>CreationDate}" change="updateIncidenceCreationDate"/>
                 </VBox>
                 <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefined}" class="sapUiSmallMarginEnd">
                     <Text text="{i18n>incidenceReason}"></Text>
-                    <Input value="{incidenceModel>Reason}"></Input>
+                    <Input value="{incidenceModel>Reason}" change="updateIncidenceReason"></Input>
                 </VBox>
                 <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefinded}">
                     <Text text="{i18n>incidenceType}"></Text>
-                    <Select selectedKey="{incidenceModel>Type}" forceSelection="false">
+                    <Select selectedKey="{incidenceModel>Type}" forceSelection="false" change="updateIncidenceType">
                         <core:Item key="0" text="{i18n>incidenceCorrect}"/>
                         <core:Item key="1" text="{i18n>incidencePending}"/>
                         <core:Item key="2" text="{i18n>incidenceError}"/>
