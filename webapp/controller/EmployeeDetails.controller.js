@@ -1,10 +1,11 @@
 // @ts-nocheck
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    // "sap/ui/core/mvc/Controller",
+    "alfa02/alfa02/controller/Base.controller",
     "alfa02/alfa02/model/formatter",
     "sap/m/MessageBox"
 ],
-    function (Controller, formatter, MessageBox) {
+    function (Base, formatter, MessageBox) {
         "use strict";
 
         function onInit() {
@@ -117,17 +118,16 @@ function updateIncidenceType(oEvent) {
     context.getModel().refresh();
 };
 
-function toOrderDetails(oEvent){
+// function toOrderDetails(oEvent){
 
-    var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
-    var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-    oRouter.navTo("RouteOrderDetails", {
-        OrderID : orderID
-    });
+//     var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
+//     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+//     oRouter.navTo("RouteOrderDetails", {
+//         OrderID : orderID
+//     });
+// };
 
-};
-
-var EmployeeDetails = Controller.extend("alfa02.alfa02.controller.EmployeeDetails", {});
+var EmployeeDetails = Base.extend("alfa02.alfa02.controller.EmployeeDetails", {});
 
 EmployeeDetails.prototype.onInit = onInit;
 EmployeeDetails.prototype.onCreateIncidence = onCreateIncidence;
@@ -137,7 +137,7 @@ EmployeeDetails.prototype.onSaveIncidence = onSaveIncidence;
 EmployeeDetails.prototype.updateIncidenceCreationDate = updateIncidenceCreationDate;
 EmployeeDetails.prototype.updateIncidenceReason = updateIncidenceReason;
 EmployeeDetails.prototype.updateIncidenceType = updateIncidenceType;
-EmployeeDetails.prototype.toOrderDetails = toOrderDetails;
+// EmployeeDetails.prototype.toOrderDetails = toOrderDetails;
 
 return EmployeeDetails;
 
