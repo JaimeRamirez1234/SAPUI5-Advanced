@@ -6,6 +6,7 @@
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:f="sap.ui.layout.form"
+    xmlns:upload="sap.m.upload"
     xmlns:sc="alfa02.alfa02.control">
     <Page id="asd">
         <customHeader>
@@ -57,7 +58,50 @@
                         <Button id="btn2" text="{i18n>clear}" press="onClearSignature" class="sapUiTinyMarginBegin"></Button>
                     </FlexBox>
                 </l:Grid>
+
+                
+
+            </Panel>
+                
+                <Panel id="PL1">
+
+                    <headerToolbar>
+                        <Toolbar id="tb2">
+                            <ToolbarSpacer id="TS1"></ToolbarSpacer>
+                            <Button id="btnDeleteFile"
+                                    icon="sap-icon://download"
+                                    press="onDownloadFile"/>
+                        </Toolbar>
+                    </headerToolbar>
+
+                    <content>
+                        <upload:UploadSet 
+                                  id="uploadCollection"
+                                  maxFileNameLength="55"
+                                  maxFileSize="10"
+                                  multiple="true"
+                                  sameFilenameAllowed="true"
+                                  instantUpload="true"
+                                  uploadUrl="/sap/opu/odata/sap/YSAPUI5_SRV_01/FilesSets"
+                                  uploadCompleted="onFileUploadComplete"
+                                  beforeUploadStarts="onFileBeforeUpload"
+                                  afterItemRemoved="onFileDeleted">
+                        </upload:UploadSet>
+                    </content>
+
+                </Panel>
+
+            <Panel id="PNL2">
+                <Panel id="PNL3" headerText="{i18n>orderProducts}">
+                    <List id="lis1" items="{path:'odataNorthwind>Order_Details', parameters:{expand : 'Product'}, factory: '.factoryOrderDetails'}"/>
+                </Panel>
             </Panel>
         </content>
+        <footer>
+            <Toolbar id="tb1">
+                <ToolbarSpacer id="ts1"></ToolbarSpacer>
+                <Button id="btnSave" text="{i18n>saveSignature}" press="onSaveSignature"></Button>
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>
